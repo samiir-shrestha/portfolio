@@ -6,7 +6,6 @@ import {
   Send, 
   Copy, 
   Check, 
-  MessageSquare, 
   Clock, 
   ArrowUpRight 
 } from 'lucide-react';
@@ -51,7 +50,7 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      onShowToast(`Thank you, ${formData.name}! Your message has been sent successfully.`);
+      onShowToast(`Thank you, ${formData.name}! Your message has been prepared.`);
       const mailtoUrl = `mailto:${PORTFOLIO_DATA.personal.email}?subject=${encodeURIComponent(
         formData.subject || 'Portfolio Inquiry'
       )}&body=${encodeURIComponent(
@@ -59,66 +58,62 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
       )}`;
       window.open(mailtoUrl, '_blank');
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 800);
+    }, 600);
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-slate-950/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 bg-white border-t border-gray-100">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-mono">
-            <MessageSquare className="w-3.5 h-3.5" />
+        <div className="max-w-3xl mb-12 space-y-2">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-mono font-medium">
             <span>GET IN TOUCH</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            Let&apos;s build something great together.
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">
+            Let&apos;s Connect & Build.
           </h2>
-          <p className="text-slate-400 text-base sm:text-lg">
-            Have a project in mind, an engineering opportunity, or want to discuss backend architecture? Feel free to reach out.
+          <p className="text-gray-600 text-sm sm:text-base">
+            Open for Backend Developer and Full-Stack Engineer positions, internships, and technical collaborations.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* Left Column: Direct Contact Details & Availability */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Left Column: Direct Contact Info */}
+          <div className="lg:col-span-5 space-y-4">
             
-            {/* Availability Banner */}
-            <div className="p-6 rounded-3xl bg-slate-900/80 border border-emerald-500/30 backdrop-blur-md shadow-lg space-y-3">
-              <div className="flex items-center gap-3">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-                </span>
-                <span className="font-semibold text-white text-base">
-                  Available for Opportunities
+            {/* Availability Box */}
+            <div className="p-5 rounded-2xl bg-emerald-50/60 border border-emerald-200 space-y-2">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse" />
+                <span className="font-semibold text-gray-900 text-sm">
+                  Actively Seeking Opportunities
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Currently open for Backend Developer and Full-Stack Engineer roles, tech internships, and ambitious project collaborations.
+              <p className="text-xs text-gray-600 leading-relaxed">
+                Currently open for Backend Developer, Full-Stack roles, and software engineering internships.
               </p>
-              <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 pt-1">
+              <div className="flex items-center gap-1.5 text-xs text-emerald-800 font-mono pt-1">
                 <Clock className="w-3.5 h-3.5" />
-                <span>Response time: Usually within 24 hours</span>
+                <span>Response time: Within 24 hours</span>
               </div>
             </div>
 
-            {/* Contact Channels List */}
-            <div className="space-y-3">
+            {/* Contact Channels */}
+            <div className="space-y-2.5">
               
               {/* Email Card */}
-              <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-                    <Mail className="w-5 h-5" />
+              <div className="p-3.5 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-emerald-600">
+                    <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400 font-mono">Email Address</div>
+                    <div className="text-[11px] text-gray-500 font-mono">Email</div>
                     <a
                       href={`mailto:${PORTFOLIO_DATA.personal.email}`}
-                      className="text-sm font-semibold text-white hover:text-emerald-400 transition-colors"
+                      className="text-xs sm:text-sm font-semibold text-gray-900 hover:text-emerald-700 transition-colors"
                     >
                       {PORTFOLIO_DATA.personal.email}
                     </a>
@@ -126,24 +121,24 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
                 </div>
                 <button
                   onClick={() => handleCopy(PORTFOLIO_DATA.personal.email, 'email')}
-                  className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer"
+                  className="p-2 rounded-lg bg-white hover:bg-gray-100 border border-gray-200 text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
                   title="Copy Email"
                 >
-                  {copiedEmail ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                  {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                 </button>
               </div>
 
               {/* Phone Card */}
-              <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
-                    <Phone className="w-5 h-5" />
+              <div className="p-3.5 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-emerald-600">
+                    <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400 font-mono">Phone / WhatsApp</div>
+                    <div className="text-[11px] text-gray-500 font-mono">Phone / WhatsApp</div>
                     <a
                       href={`tel:${PORTFOLIO_DATA.personal.phone}`}
-                      className="text-sm font-semibold text-white hover:text-cyan-400 transition-colors"
+                      className="text-xs sm:text-sm font-semibold text-gray-900 hover:text-emerald-700 transition-colors"
                     >
                       {PORTFOLIO_DATA.personal.phoneFormatted}
                     </a>
@@ -151,21 +146,21 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
                 </div>
                 <button
                   onClick={() => handleCopy(PORTFOLIO_DATA.personal.phoneFormatted, 'phone')}
-                  className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer"
+                  className="p-2 rounded-lg bg-white hover:bg-gray-100 border border-gray-200 text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
                   title="Copy Phone"
                 >
-                  {copiedPhone ? <Check className="w-4 h-4 text-cyan-400" /> : <Copy className="w-4 h-4" />}
+                  {copiedPhone ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                 </button>
               </div>
 
               {/* Location Card */}
-              <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
-                  <MapPin className="w-5 h-5" />
+              <div className="p-3.5 rounded-xl bg-gray-50 border border-gray-200 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-emerald-600">
+                  <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-400 font-mono">Current Location</div>
-                  <div className="text-sm font-semibold text-white">
+                  <div className="text-[11px] text-gray-500 font-mono">Location</div>
+                  <div className="text-xs sm:text-sm font-semibold text-gray-900">
                     {PORTFOLIO_DATA.personal.location}
                   </div>
                 </div>
@@ -176,20 +171,20 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
                 href={PORTFOLIO_DATA.personal.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-2xl bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 flex items-center justify-between gap-4 transition-colors group"
+                className="p-3.5 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-200 flex items-center justify-between gap-3 transition-colors group"
               >
-                <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-200 group-hover:text-white">
-                    <GithubIcon className="w-5 h-5" />
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-gray-800">
+                    <GithubIcon className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400 font-mono">GitHub Profile</div>
-                    <div className="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">
+                    <div className="text-[11px] text-gray-500 font-mono">GitHub Profile</div>
+                    <div className="text-xs sm:text-sm font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
                       github.com/samiir-shrestha
                     </div>
                   </div>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white" />
+                <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-gray-900" />
               </a>
 
             </div>
@@ -198,19 +193,19 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
 
           {/* Right Column: Direct Message Form */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-3xl bg-slate-900/80 border border-slate-800 backdrop-blur-xl shadow-2xl">
-              <h3 className="text-xl font-bold text-white mb-2">
-                Send a Direct Message
+            <div className="p-6 sm:p-8 rounded-2xl bg-gray-50/70 border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-1">
+                Send a Message
               </h3>
-              <p className="text-xs sm:text-sm text-slate-400 mb-6">
-                Fill in your message and it will be routed directly to me.
+              <p className="text-xs text-gray-500 mb-5">
+                Leave your details below to start a conversation.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-mono text-slate-300 mb-1.5">
-                      Your Name <span className="text-rose-400">*</span>
+                    <label className="block text-xs font-mono font-medium text-gray-700 mb-1">
+                      Your Name <span className="text-rose-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -218,13 +213,13 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Alex Johnson"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-slate-800 focus:border-emerald-500 focus:outline-none text-white text-sm placeholder-slate-500 transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-gray-300 focus:border-emerald-600 focus:outline-none text-gray-900 text-xs placeholder-gray-400 transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-slate-300 mb-1.5">
-                      Email Address <span className="text-rose-400">*</span>
+                    <label className="block text-xs font-mono font-medium text-gray-700 mb-1">
+                      Email Address <span className="text-rose-500">*</span>
                     </label>
                     <input
                       type="email"
@@ -232,49 +227,49 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="alex@company.com"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-slate-800 focus:border-emerald-500 focus:outline-none text-white text-sm placeholder-slate-500 transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-gray-300 focus:border-emerald-600 focus:outline-none text-gray-900 text-xs placeholder-gray-400 transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono text-slate-300 mb-1.5">
+                  <label className="block text-xs font-mono font-medium text-gray-700 mb-1">
                     Subject
                   </label>
                   <input
                     type="text"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    placeholder="Backend Role Inquiry / Project Collaboration"
-                    className="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-slate-800 focus:border-emerald-500 focus:outline-none text-white text-sm placeholder-slate-500 transition-colors"
+                    placeholder="Backend Role Inquiry / Collaboration"
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-gray-300 focus:border-emerald-600 focus:outline-none text-gray-900 text-xs placeholder-gray-400 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono text-slate-300 mb-1.5">
-                    Your Message <span className="text-rose-400">*</span>
+                  <label className="block text-xs font-mono font-medium text-gray-700 mb-1">
+                    Your Message <span className="text-rose-500">*</span>
                   </label>
                   <textarea
                     required
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Hi Samir, I came across your portfolio and would like to discuss..."
-                    className="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-slate-800 focus:border-emerald-500 focus:outline-none text-white text-sm placeholder-slate-500 transition-colors resize-none"
+                    placeholder="Hi Samir, I would like to discuss..."
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-gray-300 focus:border-emerald-600 focus:outline-none text-gray-900 text-xs placeholder-gray-400 transition-colors resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-slate-950 font-bold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 cursor-pointer disabled:opacity-50"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors shadow-sm cursor-pointer disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <span>Sending message...</span>
                   ) : (
                     <>
                       <span>Send Message</span>
-                      <Send className="w-4 h-4" />
+                      <Send className="w-3.5 h-3.5" />
                     </>
                   )}
                 </button>

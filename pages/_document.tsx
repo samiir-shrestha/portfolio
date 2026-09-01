@@ -14,27 +14,8 @@ export default function Document() {
         <meta property="og:title" content="Samir Shrestha | Backend & Full-Stack Developer" />
         <meta property="og:description" content="Portfolio and CV of Samir Shrestha - Final-Year BSc.CSIT student & Backend Engineer." />
         <meta property="og:type" content="website" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var saved = localStorage.getItem('theme');
-                  var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                  if (saved === 'light' || (!saved && prefersLight)) {
-                    document.documentElement.classList.add('light');
-                    document.documentElement.classList.remove('dark');
-                  } else {
-                    document.documentElement.classList.add('dark');
-                    document.documentElement.classList.remove('light');
-                  }
-                } catch(e) {}
-              })();
-            `,
-          }}
-        />
       </Head>
-      <body className="antialiased selection:bg-emerald-500 selection:text-slate-950">
+      <body className="antialiased bg-white text-gray-900 selection:bg-emerald-100 selection:text-emerald-900">
         <Main />
         <NextScript />
       </body>

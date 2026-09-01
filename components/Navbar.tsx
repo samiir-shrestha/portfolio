@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Terminal, FileText, Menu, X } from 'lucide-react';
+import { FileText, Menu, X } from 'lucide-react';
 import { GithubIcon } from './Icons';
-import { ThemeToggle } from './ThemeToggle';
 import { PORTFOLIO_DATA } from '@/data/portfolioData';
 
 interface NavbarProps {
@@ -18,18 +17,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal }) => {
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Skills', href: '#skills' },
-    { name: 'CV / Resume', href: '#cv' },
-    { name: 'Terminal', href: '#terminal' },
     { name: 'Education', href: '#education' },
+    { name: 'CV / Resume', href: '#cv' },
     { name: 'Contact', href: '#contact' },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 15);
 
-      const sections = ['about', 'projects', 'skills', 'cv', 'terminal', 'education', 'contact'];
-      const scrollPosition = window.scrollY + 200;
+      const sections = ['about', 'projects', 'skills', 'education', 'cv', 'contact'];
+      const scrollPosition = window.scrollY + 180;
 
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
@@ -50,46 +48,46 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${
         scrolled
-          ? 'bg-slate-950/80 dark:bg-slate-950/85 backdrop-blur-md border-b border-slate-800/80 shadow-lg shadow-black/20 py-3'
-          : 'bg-transparent py-5'
+          ? 'bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm py-3'
+          : 'bg-white/80 backdrop-blur-sm py-4 border-b border-gray-100'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand / Logo */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        {/* Brand / Name */}
         <Link
           href="#hero"
-          className="flex items-center gap-2.5 text-white group cursor-pointer"
+          className="flex items-center gap-2.5 text-gray-900 group cursor-pointer"
         >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-600 flex items-center justify-center text-white shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-            <Terminal className="w-5 h-5" />
+          <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold text-sm">
+            S
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-slate-100 dark:text-slate-100 tracking-tight flex items-center gap-1.5 text-base">
-              Samir Shrestha
-              <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono hidden sm:inline-block">
+            <span className="font-bold text-gray-900 tracking-tight flex items-center gap-1.5 text-base">
+              {PORTFOLIO_DATA.personal.name}
+              <span className="text-[11px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono hidden sm:inline-block">
                 CSIT
               </span>
             </span>
-            <span className="text-xs font-mono text-slate-400 dark:text-slate-400">
-              Backend & Full Stack
+            <span className="text-xs text-gray-500">
+              Backend & Full-Stack Developer
             </span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1 bg-slate-900/60 dark:bg-slate-900/60 p-1.5 rounded-2xl border border-slate-800/60 backdrop-blur-md">
+        <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.replace('#', '');
             return (
               <a
                 key={link.name}
                 href={link.href}
-                className={`px-3.5 py-1.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                   isActive
-                    ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 shadow-sm'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                    ? 'text-emerald-700 bg-emerald-50 font-semibold'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                 }`}
               >
                 {link.name}
@@ -98,15 +96,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal }) => {
           })}
         </nav>
 
-        {/* Right CTA Actions */}
-        <div className="hidden sm:flex items-center gap-3">
-          <ThemeToggle />
-
+        {/* Right Actions */}
+        <div className="hidden sm:flex items-center gap-2.5">
           <a
             href={PORTFOLIO_DATA.personal.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-xl border border-slate-700/60 bg-slate-800/60 hover:bg-slate-700/80 text-slate-300 hover:text-white transition-all flex items-center justify-center"
+            className="p-2 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 transition-colors flex items-center justify-center"
             title="GitHub Profile"
           >
             <GithubIcon className="w-4 h-4" />
@@ -115,9 +111,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal }) => {
           {onOpenCvModal ? (
             <button
               onClick={onOpenCvModal}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white text-sm font-medium shadow-md shadow-emerald-900/30 transition-all hover:scale-102 cursor-pointer"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-sm transition-colors cursor-pointer"
             >
-              <FileText className="w-4 h-4" />
+              <FileText className="w-3.5 h-3.5" />
               <span>Resume PDF</span>
             </button>
           ) : (
@@ -125,20 +121,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal }) => {
               href="/cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white text-sm font-medium shadow-md shadow-emerald-900/30 transition-all hover:scale-102"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-sm transition-colors"
             >
-              <FileText className="w-4 h-4" />
+              <FileText className="w-3.5 h-3.5" />
               <span>Resume PDF</span>
             </a>
           )}
         </div>
 
-        {/* Mobile menu button */}
-        <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
+        {/* Mobile Menu Button */}
+        <div className="flex items-center gap-2 md:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-xl border border-slate-700/60 bg-slate-800/60 text-slate-200 hover:text-white"
+            className="p-2 rounded-lg border border-gray-200 bg-white text-gray-700 hover:text-gray-900"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -146,47 +141,37 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal }) => {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden mt-3 mx-4 p-4 rounded-2xl bg-slate-900/95 border border-slate-800 backdrop-blur-xl shadow-2xl space-y-2 animate-fadeIn">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-            <span className="text-xs font-mono text-emerald-400">Navigation Menu</span>
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span className="text-xs text-slate-300">Open for Roles</span>
-            </div>
-          </div>
+        <div className="md:hidden border-t border-gray-200 bg-white px-4 py-3 space-y-1 shadow-lg">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-emerald-600"
+            >
+              {link.name}
+            </a>
+          ))}
 
-          <div className="grid grid-cols-2 gap-2 pt-2">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2.5 rounded-xl text-sm font-medium bg-slate-800/50 text-slate-200 hover:bg-emerald-500/20 hover:text-emerald-300 border border-slate-700/40 transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-
-          <div className="pt-3 border-t border-slate-800 flex items-center gap-2">
+          <div className="pt-2 border-t border-gray-100 flex items-center gap-2">
             <a
               href="/cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-semibold text-sm shadow-md"
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg bg-emerald-600 text-white text-xs font-semibold"
             >
-              <FileText className="w-4 h-4" />
-              Download CV
+              <FileText className="w-3.5 h-3.5" />
+              Download CV (PDF)
             </a>
             <a
               href={PORTFOLIO_DATA.personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-xl bg-slate-800 text-slate-200 border border-slate-700 flex items-center justify-center"
+              className="p-2 rounded-lg border border-gray-200 bg-gray-50 text-gray-700"
             >
-              <GithubIcon className="w-5 h-5" />
+              <GithubIcon className="w-4 h-4" />
             </a>
           </div>
         </div>

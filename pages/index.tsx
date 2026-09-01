@@ -5,9 +5,8 @@ import { Hero } from '@/components/Hero';
 import { About } from '@/components/About';
 import { Projects } from '@/components/Projects';
 import { Skills } from '@/components/Skills';
-import { CVSection } from '@/components/CVSection';
-import { TerminalPlayground } from '@/components/TerminalPlayground';
 import { Education } from '@/components/Education';
+import { CVSection } from '@/components/CVSection';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { ResumeModal } from '@/components/ResumeModal';
@@ -32,12 +31,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className="min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-slate-950">
+      <div className="min-h-screen flex flex-col justify-between bg-white text-gray-900 selection:bg-emerald-100 selection:text-emerald-900">
         {/* Navigation Bar */}
         <Navbar onOpenCvModal={() => setIsResumeModalOpen(true)} />
 
         {/* Main Content Sections */}
-        <main className="flex-1 w-full">
+        <main className="flex-1 w-full bg-white">
           <Hero 
             onOpenCvModal={() => setIsResumeModalOpen(true)} 
             onShowToast={showToast} 
@@ -45,9 +44,8 @@ export default function Home() {
           <About />
           <Projects />
           <Skills />
-          <CVSection onOpenPdfModal={() => setIsResumeModalOpen(true)} />
-          <TerminalPlayground />
           <Education />
+          <CVSection onOpenPdfModal={() => setIsResumeModalOpen(true)} />
           <Contact onShowToast={showToast} />
         </main>
 
@@ -60,7 +58,7 @@ export default function Home() {
           onClose={() => setIsResumeModalOpen(false)}
         />
 
-        {/* Non-intrusive Toast Notifications */}
+        {/* Toast Notifications */}
         <Toast
           message={toastMessage}
           onClose={() => setToastMessage('')}
