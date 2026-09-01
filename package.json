@@ -25,4 +25,7 @@
     "typescript": "^5"
   },
   "homepage": "http://samlirshrestha.com.np",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+  
 }
