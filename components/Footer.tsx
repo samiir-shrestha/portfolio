@@ -86,8 +86,20 @@ export const Footer: React.FC = () => {
           <div>
             &copy; {new Date().getFullYear()} {PORTFOLIO_DATA.personal.name}. All rights reserved.
           </div>
-          <div>
-            Built with Next.js, React 19, TypeScript & Tailwind CSS
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('trigger-ant-loader'));
+                }
+              }}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-950/30 hover:bg-red-900/50 border border-red-900/40 hover:border-red-500/50 text-red-400 hover:text-red-300 transition-all cursor-pointer text-[11px]"
+              title="Replay Red Bull Ant Swarm"
+            >
+              <span>🐜</span>
+              <span>March Red Bull Ants</span>
+            </button>
+            <span>Built with Next.js, React 19 & Tailwind CSS</span>
           </div>
         </div>
 
