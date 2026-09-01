@@ -24,8 +24,12 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "homepage": "http://samlirshrestha.com.np",
+  "scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint",
   "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
-  
+  "deploy": "gh-pages -d out" 
+  } 
 }
