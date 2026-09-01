@@ -54,7 +54,6 @@ export const TerminalPlayground: React.FC = () => {
               <div><span className="text-amber-300 font-mono">contact</span> - Phone, email, socials</div>
               <div><span className="text-amber-300 font-mono">curl</span> - Mock API execution</div>
               <div><span className="text-amber-300 font-mono">hire</span> - Hiring & availability status</div>
-              <div><span className="text-rose-400 font-mono">ants</span> - Launch Red Bull Ant swarm</div>
               <div><span className="text-amber-300 font-mono">clear</span> - Clear terminal screen</div>
             </div>
           </div>
@@ -139,21 +138,6 @@ export const TerminalPlayground: React.FC = () => {
         output = (
           <div className="text-emerald-400 font-medium">
             🟢 I am actively open for Backend & Full-Stack developer positions, internships, and project collaborations! Reach out at samirstha9087@gmail.com.
-          </div>
-        );
-        break;
-
-      case 'ants':
-      case 'ant':
-      case 'redbull':
-      case 'bullant':
-        if (typeof window !== 'undefined') {
-          window.dispatchEvent(new CustomEvent('trigger-ant-loader'));
-        }
-        output = (
-          <div className="text-red-400 font-mono text-xs space-y-1">
-            <p className="font-bold">🐜 Swarm Activated: Myrmecia gulosa (Australian Red Bull Ant)</p>
-            <p className="text-slate-400">Launching high-speed ant convoy across the viewport...</p>
           </div>
         );
         break;
@@ -281,15 +265,11 @@ export const TerminalPlayground: React.FC = () => {
         {/* Quick Command Chips */}
         <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
           <span className="text-xs font-mono text-slate-400">Quick run:</span>
-          {['help', 'bio', 'skills', 'projects', 'education', 'curl', 'hire', 'ants'].map((cmd) => (
+          {['help', 'bio', 'skills', 'projects', 'education', 'curl', 'hire'].map((cmd) => (
             <button
               key={cmd}
               onClick={() => handleChipClick(cmd)}
-              className={`px-3 py-1 rounded-xl border text-xs font-mono transition-colors cursor-pointer ${
-                cmd === 'ants'
-                  ? 'bg-red-950/40 hover:bg-red-900/60 border-red-850 hover:border-red-500 text-red-300 hover:text-red-200'
-                  : 'bg-slate-900 hover:bg-slate-800 border-slate-800 hover:border-emerald-500/40 text-slate-300 hover:text-emerald-300'
-              }`}
+              className="px-3 py-1 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/40 text-xs font-mono text-slate-300 hover:text-emerald-300 transition-colors cursor-pointer"
             >
               &gt; {cmd}
             </button>
